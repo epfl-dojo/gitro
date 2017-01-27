@@ -251,4 +251,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 # A propos :bulb:
 Cette présentation a été faite avec le logiciel [Marp](https://yhatt.github.io/marp/) — Markdown Presentation Writer — dans le cas des dojos de programmation pour les apprentis informaticiens de l'[EPFL](http://www.epfl.ch).
 
-Ces slides sont disponibles sur le dépot [gitro — une petite introduction à Git](https://github.com/epfl-dojo/gitro).
+Ces slides sont disponibles sur le dépot [gitro — une petite introduction à Git](https://github.com/epfl-dojo/gitro) [https://github.com/epfl-dojo/gitro].
+
+
+
