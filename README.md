@@ -1,2 +1,3 @@
 # gitro
-Une petite introduction à Git
+
+Une petite [introduction à Git](./presentation-git.pdf).

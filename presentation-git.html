@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Nicolas Borboën &lt;ponsfrilus@gmail.com&gt;">
+  <meta name="dcterms.date" content="2021-02-15">
+  <title>Introduction à Git</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/reset.css">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/theme/simple.css" id="theme">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Introduction à Git</h1>
+  <p class="author">Nicolas Borboën &lt;<a href="mailto:ponsfrilus@gmail.com" class="email">ponsfrilus@gmail.com</a>&gt;</p>
+  <p class="date">February 15, 2021</p>
+</section>
+
+<section>
+<section id="quest-ce-que-git" class="title-slide slide level1">
+<h1>Qu’est-ce que Git ?</h1>
+<blockquote>
+<p>Git est un logiciel de <strong>gestion de versions</strong> décentralisé. C’est un logiciel libre créé par Linus Torvalds, auteur du noyau Linux, et distribué selon les termes de la licence GPLv2. En 2016, il s’agit du logiciel de gestion de versions le plus populaire qui est utilisé par plus de douze millions de personnes.</p>
+</blockquote>
+<p><cite>Git, <a href="https://fr.wikipedia.org/wiki/Git" class="uri">https://fr.wikipedia.org/wiki/Git</a></cite></p>
+<aside class="notes">
+<p>Shhh, these are your private notes 📝</p>
+<ul>
+<li>First use <kbd>s</kbd> for speaker view
+<ul>
+<li>Use <kbd>ctrl</kbd>+<kbd>click</kbd> to zoom</li>
+<li>Use <kbd>b</kbd> and slide go black</li>
+<li>Use <kbd>esc</kbd> to view all slide</li>
+</ul></li>
+</ul>
+</aside>
+</section>
+<section id="pourquoi-utiliser-git" class="slide level2">
+<h2>Pourquoi utiliser Git</h2>
+<p><img data-src="./img/Strips-_Old-650-final1.jpg" style="width:55.0%" alt="comit_Strip" /> <!-- credit image: https://www.commitstrip.com/fr/2013/11/05/git-svn-ou/ --></p>
+</section>
+<section id="git-est-un-logiciel-de-gestion-de-versions-décentralisé." class="slide level2">
+<h2>Git est un logiciel de gestion de versions décentralisé.</h2>
+<p><img data-src="./img/cathedral_vs_bazaar.png" class="border" style="width:60.0%" /> <!-- credit image: http://techidiocy.com/understand-git-clone-command-svn-checkout-vs-git-clone/ --></p>
+</section>
+<section id="décentralisé-vs-centralisé" class="slide level2">
+<h2>Décentralisé vs centralisé</h2>
+<p><img data-src="./img/svn-repo.png" style="width:65.0%" /></p>
+<p>SVN, CVS, Perforce (centralisés) vs Git, Mercurial, Bazaar (décentralisés)</p>
+</section></section>
+<section>
+<section id="fonctionnement" class="title-slide slide level1">
+<h1>Fonctionnement</h1>
+<blockquote>
+<p>Le seul dossier un peu particulier créé par Git est un dossier <strong>.git</strong> (c’est un dossier caché situé à la racine du projet). Il contient l’historique des modifications des fichiers et la configuration de Git pour ce projet.</p>
+</blockquote>
+<p><cite><a href="https://openclassrooms.com/fr/courses/1233741-gerez-vos-codes-source-avec-git" class="uri">https://openclassrooms.com/fr/courses/1233741-gerez-vos-codes-source-avec-git</a></cite></p>
+</section>
+<section id="utilisation-locale" class="slide level2">
+<h2>Utilisation locale</h2>
+<blockquote>
+<p>La plupart des opérations de Git ne nécessitent que des fichiers et ressources locaux […] Git vous fera penser que les dieux de la vitesse ont octroyé leurs pouvoirs à Git.</p>
+</blockquote>
+<p><cite><a href="https://git-scm.com/book/fr/v1/Démarrage-rapide-Rudiments-de-Git#Presque-toutes-les-opérations-sont-locales">Rudiments de Git (git-scm.com)</a></cite></p>
+</section>
+<section id="les-tripes-de-git" class="slide level2">
+<h2>Les tripes de Git</h2>
+<ul>
+<li><strong>objects</strong>: stockage du contenu</li>
+<li><strong>tree</strong>: répertoire</li>
+<li><strong>blob</strong>: fichier (Binary Large OBject)</li>
+<li><strong>commit</strong>: instantané</li>
+<li><strong>tag</strong>: une étiquette pointant toujours sur un même commit</li>
+<li><strong>refs</strong>: méchanisme interne pour représenter les branches et les tags</li>
+</ul>
+<p><cite><a href="https://git-scm.com/book/fr/v1/Les-tripes-de-Git-Les-objets-Git" class="uri">https://git-scm.com/book/fr/v1/Les-tripes-de-Git-Les-objets-Git</a></cite></p>
+</section></section>
+<section>
+<section id="utilisation-pour-démarrer" class="title-slide slide level1">
+<h1>Utilisation (pour démarrer)</h1>
+<ul>
+<li><p>Initialisation d’un dépôt Git dans un répertoire existant<br> <code>$ git init</code></p></li>
+<li><p>Récupération d’un dépôt distant dans un dépôt local<br> <code>$ git clone $URI</code></p></li>
+</ul>
+<p><cite><a href="https://git-scm.com/book/fr/v2/Les-bases-de-Git-Démarrer-un-dépôt-Git" class="uri">https://git-scm.com/book/fr/v2/Les-bases-de-Git-Démarrer-un-dépôt-Git</a></cite></p>
+</section>
+<section id="utilisation-modifications-dans-le-dépôt" class="slide level2">
+<h2>Utilisation (modifications dans le dépôt)</h2>
+<ul>
+<li>Placer de nouveaux fichiers sous suivi de version<br> <code>$ git add .</code></li>
+<li>Valider vos modifications<br> <code>$ git commit</code>
+<ul>
+<li>il ne concerne qu’une chose et une seule ;</li>
+<li>il est le plus petit possible (tout en restant cohérent) (atomique).</li>
+</ul></li>
+</ul>
+<p><cite><a href="https://git-scm.com/book/fr/v2/Les-bases-de-Git-Enregistrer-des-modifications-dans-le-dépôt" class="uri">https://git-scm.com/book/fr/v2/Les-bases-de-Git-Enregistrer-des-modifications-dans-le-dépôt</a></cite></p>
+</section>
+<section id="utilisation-état" class="slide level2">
+<h2>Utilisation (état)</h2>
+<ul>
+<li>Vérifier l’état des fichiers<br> <code>$ git status</code></li>
+<li>Visualiser l’historique des validations<br> <code>$ git log .</code>
+<ul>
+<li><a href="https://coderwall.com/p/euwpig/a-better-git-log" class="uri">https://coderwall.com/p/euwpig/a-better-git-log</a></li>
+</ul></li>
+</ul>
+<p><cite><a href="https://git-scm.com/book/fr/v2/Les-bases-de-Git-Visualiser-l&#39;historique-des-validations" class="uri">https://git-scm.com/book/fr/v2/Les-bases-de-Git-Visualiser-l'historique-des-validations</a></cite></p>
+</section>
+<section id="utilisation-avec-dautres-personnes" class="slide level2">
+<h2>Utilisation (avec d’autres personnes)</h2>
+<ul>
+<li>Envoyer ses modifications sur un serveur<br> <code>$ git push</code></li>
+<li>Récupérer des modifications depuis un serveur<br> <code>$ git pull</code></li>
+</ul>
+<p><cite><a href="https://git-scm.com/book/fr/v2/Les-bases-de-Git-Visualiser-l&#39;historique-des-validations" class="uri">https://git-scm.com/book/fr/v2/Les-bases-de-Git-Visualiser-l'historique-des-validations</a></cite></p>
+</section></section>
+<section>
+<section id="branches" class="title-slide slide level1">
+<h1>Branches</h1>
+<!-- https://www.miximum.fr/blog/enfin-comprendre-git/ -->
+<p><img data-src="./img/branches.png" style="width:50.0%" /><br></p>
+<ul>
+<li>Une branche n’est qu’une étiquette qui pointe vers un commit.</li>
+<li>Elle permet d’avoir facilement des environnements de développement séparés (feature, bug fix).</li>
+<li>Changer de branche modifie les fichiers dans votre répertoire de travail.</li>
+</ul>
+<p><cite><a href="https://git-scm.com/book/fr/v1/Les-branches-avec-Git-Travailler-avec-les-branches" class="uri">https://git-scm.com/book/fr/v1/Les-branches-avec-Git-Travailler-avec-les-branches</a></cite></p>
+</section>
+<section id="utilisation-flow" class="slide level2">
+<h2>Utilisation (flow)</h2>
+<p>L’utilisation des branches peut être liée à des bonnes pratiques, par exemple :</p>
+<ul>
+<li><a href="https://leanpub.com/git-flow/read" class="uri">https://leanpub.com/git-flow/read</a></li>
+<li><a href="http://nvie.com/posts/a-successful-git-branching-model/" class="uri">http://nvie.com/posts/a-successful-git-branching-model/</a></li>
+</ul>
+</section>
+<section id="utilisation-conflits" class="slide level2">
+<h2>Utilisation (conflits)</h2>
+<p>Lors qu’un fichier est modifié par un autre utilisateur, ou que vous voulez fusionner deux branches, il arrive qu’il soit nécessaire de résoudre des conflits.</p>
+<p>Afin de pouvoir résoudre les conflits visuellement, il existe des outils adéquats, par exemple <a href="http://meldmerge.org/">Meld</a>. Pour définir l’outil utilisé pour résoudre les conflits, utiliser la commande: <code>$ git config merge.tool meld</code></p>
+</section></section>
+<section>
+<section id="résumé" class="title-slide slide level1">
+<h1>Résumé</h1>
+<p><strong>Git de survie</strong></p>
+<p><code>git init</code> / <code>git clone</code></p>
+<p><code>git add</code>, <code>git commit</code></p>
+<p><code>git status</code> / <code>git diff</code> / <code>git log</code></p>
+<p><code>git push</code> / <code>git pull</code></p>
+</section>
+<section id="états" class="slide level2">
+<h2>États</h2>
+<p><img data-src="./img/areas.png" /></p>
+</section>
+<section id="relevant-xkcd" class="slide level2">
+<h2>Relevant xkcd</h2>
+<p><img data-src="./img/git_2x_xkcd1597.png" style="width:35.0%" /> <cite><a href="https://xkcd.com/1597/" class="uri">https://xkcd.com/1597/</a></cite></p>
+</section></section>
+<section>
+<section id="plateforme-dhébergement-git" class="title-slide slide level1">
+<h1>Plateforme d’hébergement Git</h1>
+<p>Bien que l’utilisation de Git puisse être fait indépendament d’un service d’hébergement, ces derniers apportent des fonctionnalités pratiques, notamment dans le cadre du travail en équipe.</p>
+</section>
+<section id="fonctionalités" class="slide level2">
+<h2>Fonctionalités</h2>
+<ul>
+<li>visualisation des fichiers et des commits</li>
+<li>édition en ligne</li>
+<li>forks / pull request / merge request</li>
+<li>issue tracker</li>
+<li>CI/CD</li>
+<li>wikis</li>
+<li>social network pour développeurs</li>
+</ul>
+</section>
+<section id="plateforme-les-plus-connues" class="slide level2">
+<h2>Plateforme les plus connues</h2>
+<ul>
+<li><a href="https://github.com" class="uri">https://github.com</a></li>
+<li><a href="https://gitlab.com" class="uri">https://gitlab.com</a></li>
+<li><a href="https://gitlab.epfl.ch" class="uri">https://gitlab.epfl.ch</a></li>
+<li><a href="https://bitbucket.org" class="uri">https://bitbucket.org</a></li>
+</ul>
+</section></section>
+<section>
+<section id="gui" class="title-slide slide level1">
+<h1>GUI</h1>
+<p>Git est fait pour être utilisé en ligne de commande. Cependant, il existe plusieurs interface graphique pour l’utiliser :</p>
+<ul>
+<li><code>git instaweb --httpd=webrick</code></li>
+<li><code>gitk</code></li>
+<li><a href="https://www.gitkraken.com">GitKraken</a></li>
+<li><a href="https://gitahead.github.io/gitahead.com/">GitAhead</a></li>
+<li>et plein d’autre : <a href="https://git-scm.com/download/gui/" class="uri">https://git-scm.com/download/gui/</a></li>
+</ul>
+</section>
+<section id="ide" class="slide level2">
+<h2>IDE</h2>
+<p>Git est intégrés à des IDE/éditeurs :</p>
+<ul>
+<li><a href="https://atom.io/">Atom</a></li>
+<li><a href="https://code.visualstudio.com/">VScode</a></li>
+<li><a href="https://www.jetbrains.com/idea/">IntelliJ</a></li>
+<li>etc..</li>
+</ul>
+</section>
+<section id="extras" class="slide level2">
+<h2>Extras</h2>
+<p>Les programmes comme <a href="https://github.com/tj/git-extras">Git Extras</a> ou <a href="https://cli.github.com/">gh cli</a> permettent de gagner beaucoup de temps.</p>
+</section></section>
+<section>
+<section id="pratique" class="title-slide slide level1">
+<h1>Pratique</h1>
+<p><img data-src="./img/Alexander_Nestorov.gif" /></p>
+</section>
+<section id="installation" class="slide level2">
+<h2>Installation</h2>
+<ol type="1">
+<li>Installation git <a href="https://git-scm.com/book/fr/v2/Démarrage-rapide-Installation-de-Git">doc</a></li>
+<li>Configuration de l’utilisateur <a href="https://git-scm.com/book/fr/v2/Démarrage-rapide-Paramétrage-%C3%A0-la-premi%C3%A8re-utilisation-de-Git">doc</a><br> <code>$ git config --global user.name "John Doe"</code><br> <code>$ git config --global user.email johndoe@example.com</code></li>
+</ol>
+</section>
+<section id="pratique-initialiser-un-repo" class="slide level2">
+<h2>Pratique : initialiser un repo</h2>
+<ul>
+<li>Créer un dépôt local <code>$ git init</code> dans un répertoire</li>
+<li>Manipulation:
+<ul>
+<li>création fichier, édition fichier ;</li>
+<li><code>$ git add fichier</code> “Staging aera”</li>
+<li><code>$ git commit -m "mon message de log" fichier</code> “Repository aera”</li>
+</ul></li>
+<li>Utiliser <code>$ git status</code> entre les étapes</li>
+</ul>
+</section>
+<section id="pratique-créer-un-conflit" class="slide level2">
+<h2>Pratique : Créer un conflit</h2>
+<ul>
+<li>Modifier un fichier et le commiter</li>
+<li>Création d’une branche sur le répertoire courant et switcher dessus <code>$ git checkout -b maBranche</code></li>
+<li>Editer les mêmes lignes du fichier dans la branche et le commiter</li>
+<li>Retrouner sur la branche <code>master</code> : <code>$ git checkout master</code></li>
+<li>Fusionner <code>maBranche</code> dans <code>master</code> : <code>$ git merge maBranche</code></li>
+<li>Identifier le conflit avec <code>$ git status</code></li>
+<li>Résoudre le conflit, par exemple avec <a href="http://meldmerge.org/">Meld</a></li>
+</ul>
+</section>
+<section id="pratique-conflits" class="slide level2">
+<h2>Pratique (conflits)</h2>
+<pre><code>~/gitTest(branch:master) » git merge maBranche
+Auto-merging fichier
+CONFLICT (content): Merge conflict in fichier
+Automatic merge failed; fix conflicts and then commit the result.</code></pre>
+<ul>
+<li>Ouvrir l’outil de résolution de conflits : <code>$ git mergetool</code></li>
+<li>Résoudre les conflits (le fichier central est le fichier final)</li>
+<li>Utiliser <code>$ git add fichier</code> et <code>$ git commit -m"Merge"</code> -&gt; conflits résolus</li>
+</ul>
+</section>
+<section id="pratique-conflits-1" class="slide level2">
+<h2>Pratique (conflits)</h2>
+<p>Utiliser une commande pour voir le graph des commits, par exemple :</p>
+<ul>
+<li><code>$ git log --graph</code> ou</li>
+<li><code>$ git log --graph --oneline --decorate --all</code></li>
+</ul>
+</section></section>
+<section>
+<section id="conclusion" class="title-slide slide level1">
+<h1>Conclusion</h1>
+<p><img data-src="./img/version_all_the_things.jpg" /></p>
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
+<p><img data-src="./img/in-case-of-fire-1-git-commit-2-git-push-3-leave-building2.png" /></p>
+</section></section>
+<section>
+<section id="ressources-1" class="title-slide slide level1">
+<h1>Ressources [1]</h1>
+<ul>
+<li>Starter Pack
+<ul>
+<li>Le site officiel : <a href="https://git-scm.com/" class="uri">https://git-scm.com/</a>
+<ul>
+<li>Les multiples clients : <a href="https://git-scm.com/downloads" class="uri">https://git-scm.com/downloads</a></li>
+<li>Les pages de documentation : <a href="https://git-scm.com/doc" class="uri">https://git-scm.com/doc</a></li>
+<li>Le livre, en français : <a href="https://git-scm.com/book/fr/" class="uri">https://git-scm.com/book/fr/</a></li>
+</ul></li>
+<li><a href="http://rogerdudler.github.io/git-guide/">Juste un petit guide pour bien démarrer avec git. no deep shit ;)</a></li>
+</ul></li>
+</ul>
+</section>
+<section id="ressources-2" class="slide level2">
+<h2>Ressources [2]</h2>
+<ul>
+<li>Cours
+<ul>
+<li><a href="http://www.codingdojo.com/blog/git-tutorial-for-beginners/">Learn Git in 7 minutes</a> Un tutorial pour débutant avec une vidéo et une infographie.</li>
+<li><a href="https://www.codeschool.com/courses/try-git">CodeSchool</a> / <a href="https://try.github.io">GitTry</a> Les tutos officiels pour Git.</li>
+<li><a href="http://learngitbranching.js.org/">Learn Git Branching</a> Un super site avec rendu visuel pour mieux comprendre le fonctionnement des branches.</li>
+</ul></li>
+</ul>
+</section>
+<section id="ressources-3" class="slide level2">
+<h2>Ressources [3]</h2>
+<ul>
+<li>Intro
+<ul>
+<li><a href="https://github.com/sdfepfl/git-basics" class="uri">https://github.com/sdfepfl/git-basics</a></li>
+<li><a href="https://c4science.ch/source/git-demo/" class="uri">https://c4science.ch/source/git-demo/</a></li>
+<li><a href="https://noullet-gei.github.io/GIT/" class="uri">https://noullet-gei.github.io/GIT/</a></li>
+</ul></li>
+</ul>
+</section>
+<section id="ressources-4" class="slide level2">
+<h2>Ressources [4]</h2>
+<ul>
+<li>Divers
+<ul>
+<li><a href="http://think-like-a-git.net/" class="uri">http://think-like-a-git.net/</a></li>
+<li><a href="http://marklodato.github.io/visual-git-guide/index-fr.html" class="uri">http://marklodato.github.io/visual-git-guide/index-fr.html</a></li>
+<li><a href="https://help.github.com/articles/git-and-github-learning-resources/" class="uri">https://help.github.com/articles/git-and-github-learning-resources/</a></li>
+<li><a href="http://danielkummer.github.io/git-flow-cheatsheet/index.fr_FR.html" class="uri">http://danielkummer.github.io/git-flow-cheatsheet/index.fr_FR.html</a></li>
+<li><a href="http://www.askaswiss.com/2016/01/12-useful-advanced-git-commands.html" class="uri">http://www.askaswiss.com/2016/01/12-useful-advanced-git-commands.html</a></li>
+<li><a href="https://www.miximum.fr/blog/enfin-comprendre-git/" class="uri">https://www.miximum.fr/blog/enfin-comprendre-git/</a></li>
+<li><a href="https://moodle.insa-rouen.fr/pluginfile.php/87086/mod_resource/content/3/Git.pdf" class="uri">https://moodle.insa-rouen.fr/pluginfile.php/87086/mod_resource/content/3/Git.pdf</a></li>
+</ul></li>
+</ul>
+</section>
+<section id="ressources-6" class="slide level2">
+<h2>Ressources [6]</h2>
+<ul>
+<li>Awesome
+<ul>
+<li><a href="https://github.com/dictcp/awesome-git" class="uri">https://github.com/dictcp/awesome-git</a></li>
+<li><a href="https://github.com/git-tips/tips" class="uri">https://github.com/git-tips/tips</a></li>
+</ul></li>
+</ul>
+</section>
+<section id="ressources-7" class="slide level2">
+<h2>Ressources [7]</h2>
+<ul>
+<li>Cheat Sheets
+<ul>
+<li><a href="https://services.github.com/on-demand/downloads/fr/github-git-cheat-sheet.pdf" class="uri">https://services.github.com/on-demand/downloads/fr/github-git-cheat-sheet.pdf</a></li>
+<li><a href="http://rogerdudler.github.io/git-guide/files/git_cheat_sheet.pdf" class="uri">http://rogerdudler.github.io/git-guide/files/git_cheat_sheet.pdf</a></li>
+<li><a href="https://github.com/arslanbilal/git-cheat-sheet" class="uri">https://github.com/arslanbilal/git-cheat-sheet</a></li>
+<li><a href="https://www.git-tower.com/blog/git-cheat-sheet/" class="uri">https://www.git-tower.com/blog/git-cheat-sheet/</a></li>
+<li><a href="https://www.atlassian.com/dms/wac/images/landing/git/atlassian_git_cheatsheet.pdf" class="uri">https://www.atlassian.com/dms/wac/images/landing/git/atlassian_git_cheatsheet.pdf</a></li>
+<li><a href="http://www.cheat-sheets.org/saved-copy/git-cheat-sheet.pdf" class="uri">http://www.cheat-sheets.org/saved-copy/git-cheat-sheet.pdf</a></li>
+</ul></li>
+</ul>
+</section>
+<section id="ressources-8" class="slide level2">
+<h2>Ressources [8]</h2>
+<ul>
+<li>Infographie
+<ul>
+<li><a href="http://www.codingdojo.com/blog/wp-content/uploads/Learn_Github_ArtEnhanced.jpg">Learn Git in 7 minutes</a></li>
+<li><a href="https://github.com/aaasen/github_globe" class="uri">https://github.com/aaasen/github_globe</a></li>
+</ul></li>
+</ul>
+</section></section>
+<section id="à-propos" class="title-slide slide level1">
+<h1>À propos</h1>
+<p>Cette présentation a été faite dans le cadre des dojos de programmation pour les apprentis informaticiens de l’<a href="http://www.epfl.ch">EPFL</a>. La source est disponible sur le dépot <a href="https://github.com/epfl-dojo/gitro">gitro — une petite introduction à Git</a> <a href="https://github.com/epfl-dojo/gitro" class="uri">https://github.com/epfl-dojo/gitro</a>. Elle est écrite en <a href="https://daringfireball.net/projects/markdown/">MarkDown</a>, puis convertie en HTML avec <a href="https://pandoc.org/">Pandoc</a> (et <a href="https://revealjs.com/">reveal.js</a>).</p>
+<!-- Use
+  pandoc -t revealjs -V theme=simple -s -o myslides.html presentation-git.md && chromium "file://$(pwd)/myslides.html?print-pdf"
+
+  pandoc -t revealjs -V theme=simple -V progress=true -V slideNumber=true -V spotlight=true --slide-level=2 -s -o myslides.html presentation-git.md && chromium "file://$(pwd)/myslides.html"
+
+-->
+<style>
+  .reveal h1 { font-size: 2em; }
+  .reveal h2 { font-size: 1.6em; }
+  .reveal h3 { font-size: 1.4em; }
+  .reveal h4 { font-size: 1.2em; }
+  .reveal h5 { font-size: 1.1em; }
+  .border { border: 1px solid #555; }
+  .reveal blockquote { width: 100% }
+  .reveal blockquote:before {
+    display: block;
+    padding-left: 10px;
+    content: "\201C";
+    font-size: 80px;
+    position: absolute;
+    left: -20px;
+    top: -20px;
+    color: #7a7a7a;
+  }
+  .reveal cite:before { content: "\2009 \2015 \2009"; }
+  .reveal cite { font-size: 80%; }
+  .reveal code {
+    background-color: #eee;
+    border-radius: 3px;
+    font-family: courier, monospace;
+    padding: 0 3px;
+    font-size: 0.8em;
+  }
+</style>
+</section>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/reveal.js@^4//dist/reveal.js"></script>
+
+  // reveal.js plugins
+  <script src="https://unpkg.com/reveal.js@^4//plugin/notes/notes.js"></script>
+  <script src="https://unpkg.com/reveal.js@^4//plugin/search/search.js"></script>
+  <script src="https://unpkg.com/reveal.js@^4//plugin/zoom/zoom.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display a presentation progress bar
+        progress: true,
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+
+        // reveal.js plugins
+        plugins: [
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>
